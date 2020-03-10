@@ -27,9 +27,10 @@ void cat (char *arg) {
         FILE *file;
         file = fopen(arg, "r");
         if (file) {
-        while ((c = getc(file)) != EOF)
-                putchar(c);
+        	while ((c = getc(file)) != EOF)
+                	putchar(c);
         fclose(file);
+	}
 }
 
 void pwd () {
@@ -91,7 +92,7 @@ void cd(char *arg) {
 		printf("No such file or directory");
 }
 
-int main(void) {
+int main(int argc, char *argv[]) {
 	if (argc == 1) {
                 size_t entry;
 		char *buf;
@@ -108,4 +109,3 @@ int main(void) {
 	return 0;
 
 }
-
