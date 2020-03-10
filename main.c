@@ -21,6 +21,16 @@ void initShell() {
 	sleep(1);
 	clear();
 }
+// https://stackoverflow.com/questions/3463426/in-c-how-should-i-read-a-text-file-and-print-all-strings
+void cat (char *arg) {
+        int c;
+        FILE *file;
+        file = fopen(arg, "r");
+        if (file) {
+        while ((c = getc(file)) != EOF)
+                putchar(c);
+        fclose(file);
+}
 
 void pwd () {
 	char cwd[PATH_MAX];
