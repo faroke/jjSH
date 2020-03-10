@@ -92,15 +92,20 @@ void cd(char *arg) {
 }
 
 int main(void) {
-	size_t entry;
-	char *buf;
-	char *str;
-	size_t bufsize = 0;
-	initShell();
-	print("\n");
-	//prompt();
-	cd("/toto");
-	pwd();
+	if (argc == 1) {
+                size_t entry;
+		char *buf;
+		size_t bufsize = 0;
+		initShell();
+		print("\n");
+		while ( 1 ) {
+			getline(&buf, &bufsize, stdin);
+		}
+	}
+        else 
+                execl("/bin/bash", "/bin/bash", argv[1], NULL);
+        //execl est temporaire en attendant l analyse des fichiers
 	return 0;
+
 }
 
