@@ -101,6 +101,7 @@ int main(int argc, char *argv[]) {
 		print("\n");
 		while ( 1 ) {
 			getline(&buf, &bufsize, stdin);
+			prompt();
 		}
 	}
         else 
