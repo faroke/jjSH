@@ -5,6 +5,14 @@
 #include<dirent.h>
 #include<string.h>
 
+char* concat(const char *s1, const char *s2)
+{
+    char *result = malloc(strlen(s1) + strlen(s2) + 1); // +1 for the null-terminator
+    strcpy(result, s1);
+    strcat(result, s2);
+    return result;
+}
+
 void clear(){
 	printf("\033[H\033[J");
 }
@@ -17,7 +25,7 @@ void print(char *str) {
 
 void initShell() {
 	clear();
-	print("Welcome in JJSH!\n\n\n");
+	print("Welcome in JJsh!\n\n\n");
 	sleep(1);
 	clear();
 }
@@ -27,10 +35,10 @@ void cat (char *arg) {
         FILE *file;
         file = fopen(arg, "r");
         if (file) {
-        	while ((c = getc(file)) != EOF)
-                	putchar(c);
+        while ((c = getc(file)) != EOF)
+                putchar(c);
+		}
         fclose(file);
-	}
 }
 
 void pwd () {
@@ -71,7 +79,7 @@ void ls(char *d) {
 void findQuote(char *str) {
 	int nbr;
 
-	nbr = 0; // quotes found 
+	nbr = 0; //nbr of quotes found 
 	while(str) {
 		if (*str == '\'')
 			nbr++;
@@ -92,21 +100,54 @@ void cd(char *arg) {
 		printf("No such file or directory");
 }
 
-int main(int argc, char *argv[]) {
-	if (argc == 1) {
-                size_t entry;
-		char *buf;
-		size_t bufsize = 0;
-		initShell();
-		print("\n");
-		while ( 1 ) {
-			prompt();
-			getline(&buf, &bufsize, stdin);
-		}
+void cp (char *file, char *path) {
+	FILE *source_f, *target_f;
+	char c;
+	source_f = fopen(file, "r");
+	if (source_f == NULL) {
+		printf("source fail");
+		exit(EXIT_FAILURE);
 	}
-        else 
-                execl("/bin/bash", "/bin/bash", argv[1], NULL);
-        //execl est temporaire en attendant l analyse des fichiers
-	return 0;
-
+	if (strcmp(path,"../") == 0) {
+		char *name = concat(path,file);
+		target_f = fopen(name, "w");
+		free(name);
+	} else if (strcmp(path, "..") == 0) {
+		char *name = concat(concat(path, "/"), file);
+		target_f = fopen(name, "w");
+		free(name);
+	} else {
+		printf("else");
+		target_f = fopen(path, "w");
+	}
+	if (target_f == NULL) {
+		printf("target fail");
+		exit(EXIT_FAILURE);
+	}
+	while((c = getc(source_f)) != EOF)
+		fputc(c,target_f);
+	printf("File copied successfully\n");
+	fclose(source_f);
+	fclose(target_f);		
 }
+//mv
+//rm
+
+int main(int argc, char** argv) {
+	//while(1)
+	size_t entry;
+	char *buf;
+	size_t bufsize = 0;
+	initShell();
+	print("\n");
+	//prompt();
+	//getline(&buf,&bufsize,stdin);
+	/*if (strcmp(buf,"ls"))
+		ls(".");
+	} else {
+		//read file
+	}*/
+	cp("tt","..");
+	return 0;
+}
+
