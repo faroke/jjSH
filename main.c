@@ -132,6 +132,9 @@ void cp (char *file, char *path) {
 }
 //mv
 //rm
+void	reception_command(char *buf) {
+}
+
 void	lancement_standard() {
                 size_t entry;
                 char *buf;
