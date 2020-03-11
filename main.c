@@ -100,8 +100,8 @@ int main(int argc, char *argv[]) {
 		initShell();
 		print("\n");
 		while ( 1 ) {
-			getline(&buf, &bufsize, stdin);
 			prompt();
+			getline(&buf, &bufsize, stdin);
 		}
 	}
         else 
