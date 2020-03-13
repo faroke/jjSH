@@ -132,22 +132,30 @@ void cp (char *file, char *path) {
 }
 //mv
 //rm
+void	reception_command(char *buf) {
+}
 
+void	lancement_standard() {
+                size_t entry;
+                char *buf;
+                size_t bufsize = 0;
+                initShell();
+                print("\n");
+                while ( 1 ) {
+                        prompt();
+                        getline(&buf, &bufsize, stdin);
+			if (*buf)
+				reception_command(buf);
+                }
+
+}
 int main(int argc, char** argv) {
-	//while(1)
-	size_t entry;
-	char *buf;
-	size_t bufsize = 0;
-	initShell();
-	print("\n");
-	//prompt();
-	//getline(&buf,&bufsize,stdin);
-	/*if (strcmp(buf,"ls"))
-		ls(".");
-	} else {
-		//read file
-	}*/
-	cp("tt","..");
+	if (argc == 1)
+        	lancement_standard();
+	else 
+                execl("/bin/bash", "/bin/bash", argv[1], NULL);
+        //execl est temporaire en attendant l analyse des fichiers
 	return 0;
+
 }
 
