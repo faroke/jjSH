@@ -64,21 +64,6 @@ char **split_whitespaces(char *str) {
 	return (words);
 }
 
-int strArrSize(char **strArr) {
-	int i;
-	while(*strArr++ != NULL) {
-		i++;
-	}
-	return i;
-}
 
-void arr_free(char **strArr) {
-	int arr_size,i;
-
-	arr_size = sizeof strArr / sizeof *strArr;
-	for (i = 0; i < arr_size; i++)
-		free(strArr[i]);
-	free(strArr);
-}
 
 
