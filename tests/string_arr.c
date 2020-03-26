@@ -1,0 +1,129 @@
+#include "string_arr.h"
+
+
+int WHITESPACE (char c) {
+    if (c == '\t' || c == '\n' || c == ' ')
+        return 1;
+    else
+        return 0;
+}
+
+int	word_size(char *str) {
+    int i;
+
+    i = 0;
+    while (WHITESPACE(str[i]) && str[i] != '\0')
+        str++;
+    while (!(WHITESPACE(str[i])) && str[i] != '\0')
+        i++;
+    return (i);
+}
+
+int	word_count(char *str) {
+    int words;
+    int i;
+
+    i = 0;
+    words = 0;
+    while (str[i] != '\0') {
+        while (WHITESPACE(str[i]) && str[i] != '\0')
+            i++;
+        while (!(WHITESPACE(str[i])) && str[i] != '\0')
+            i++;
+        while (WHITESPACE(str[i]) && str[i] != '\0')
+            i++;
+        words++;
+    }
+    return (words);
+}
+
+char **split_whitespaces(char *str) {
+    int	wcount;
+    int	words_entered;
+    int	i;
+    char **words;
+    char *word = NULL;
+
+    i = 0;
+    words_entered = 0;
+    wcount = word_count(str);
+    words = (char**)malloc(sizeof(char*) * (wcount + 1));
+    while (words_entered < wcount)
+    {
+        word = (char*)malloc(sizeof(char) * (word_size(str) + 1));
+        while (WHITESPACE(str[0]) && str[0] != '\0')
+            str++;
+        while (!(WHITESPACE(str[0])) && str[0] != '\0')
+            word[i++] = *str++;
+        word[i] = '\0';
+        words[words_entered++] = word;
+        i = 0;
+    }
+    words[wcount] = 0;
+    return (words);
+}
+
+
+
+int		count_words(char *str)
+{
+    int		count;
+
+    count = 0;
+    while (*str)
+    {
+        while (*str && (*str == ' ' || *str == '\n' || *str == '\t'))
+            str++;
+        if (*str && *str != ' ' && *str != '\n' && *str != '\t')
+        {
+            count++;
+            while (*str && *str != ' ' && *str != '\n' && *str != '\t')
+                str++;
+        }
+    }
+    return (count);
+}
+
+char	*malloc_word(char *str)
+{
+    char	*word;
+    int		i;
+
+    i = 0;
+    while (str[i] && str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
+        i++;
+    word = (char *)malloc(sizeof(char) * (i + 1));
+    i = 0;
+    while (str[i] && str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
+    {
+        word[i] = str[i];
+        i++;
+    }
+    word[i] = '\0';
+    return (word);
+}
+
+char	**ft_split(char *str)
+{
+    int		words;
+    char	**tab;
+    int		i;
+
+    words = count_words(str);
+    tab = (char **)malloc(sizeof(char*) * (words + 1));
+    i = 0;
+    while (*str)
+    {
+        while (*str && (*str == ' ' || *str == '\n' || *str == '\t'))
+            str++;
+        if (*str && *str != ' ' && *str != '\n' && *str != '\t')
+        {
+            tab[i] = malloc_word(str);
+            i++;
+            while (*str && *str != ' ' && *str != '\n' && *str != '\t')
+                str++;
+        }
+    }
+    tab[i] = NULL;
+    return (tab);
+}
