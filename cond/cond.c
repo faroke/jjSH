@@ -16,11 +16,19 @@ struct cond {
     int type;
 };
 typedef struct cond cond_t;
+
+//Oui je sais que c'est dégueulasse, c'est juste pour avoir l'idée
 cond_t splitcond(char str[]) {
     int i;
     while (str[i] != '\0') {
-        if ((str[i] == 'i') && (str[++i] == 'f'))
-            printf("IF DETECTION");
+        if ((str[i] == 'i') && (str[++i] == 'f')) {
+            while ((str[i] != 'f') && (str[++i] != 'i') {
+                if (str[i] == '['){
+                    while (str[i] != ']')
+                        //on ajoute le contenu dans condition
+                }
+            }
+        }
         printf("%c", str[i]);
         i++;
     }
