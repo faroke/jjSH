@@ -17,11 +17,16 @@ struct cond {
 };
 typedef struct cond cond_t;
 cond_t splitcond(char str[]) {
-    while (str[]) {
-
+    int i;
+    while (str[i] != '\0') {
+        if ((str[i] == 'i') && (str[++i] == 'f'))
+            printf("IF DETECTION");
+        printf("%c", str[i]);
+        i++;
     }
 }
 int main() {
     char str[] = "if [a=2];then\n a++\n fi ";
-    printf("%s", str);
+    splitcond(str);
+    //printf("%s", str);
 }
