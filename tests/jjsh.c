@@ -105,21 +105,3 @@ initShell()
     clear();
 }
 
-/*
-void
- parseFile(char *s, char **str)
- {
-    int detect;
-    char **tmp;
-
-    detect = 0;
-    tmp = str;
-    while (*s != '\0') {
-        str = tmp;
-        while (detect == 0 && *s != '\0') {
-            while (*s == '\n') {
-
-            }
-        }
-    }
-}*/

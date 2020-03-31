@@ -1,8 +1,8 @@
 #include "jjsh.h"
 #include "var.h"
 #include "string_arr.h"
+#include "if.h"
 #include<sys/wait.h>
-
 char *commands[100];
 
 
@@ -10,10 +10,13 @@ char *commands[100];
 int
 main(void)
 {
-    char *s = "a=5 b=6";
+    char *s = "a=5 b=2 $a=b";
     var_t v;
+    v.size = 0;
     find_var(s,&v);
-    printf("%s = %s", v.name[0], v.content[0]);
+    printf("%s = %s type = %d\n", v.name[1], v.content[1], v.type[1]);
+   // s = "if [[ $a -eq $b ]];";
+   // parse_if(s,&v);
     return 0;
     /*char usr_cmd[250];
     int exit_sh, a;
