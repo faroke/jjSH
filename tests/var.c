@@ -71,7 +71,6 @@ find_type(var_t *v)
 {
     int i,j;
     char *cp = NULL;
-
     for (i = 0; i < v->size; i++) {
         cp = strdup(v->content[i]);
         for (j = 0; cp[j] != '\0'; j++) {

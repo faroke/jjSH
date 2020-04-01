@@ -10,13 +10,19 @@ char *commands[100];
 int
 main(void)
 {
-    char *s = "a=5 b=2 $a=b";
+    char *s = "a=q b=q $a=b";
     var_t v;
     v.size = 0;
     find_var(s,&v);
-    printf("%s = %s type = %d\n", v.name[1], v.content[1], v.type[1]);
-   // s = "if [[ $a -eq $b ]];";
-   // parse_if(s,&v);
+   // printf("%s = %s type = %d\n", v.name[1], v.content[1], v.type[1]);
+    s = "if [[ -n $a ]]; \nthen\necho $a $b\necho bip\nfi\n";
+    //execlp("ls","ls","-l",(char*) NULL);
+    parse_if(s,&v);
+    /*char *test = "if [[;lkd;flk]]; then \n echo $a\n echo $b\n fi $b='helllllllloooooo'";
+    char *tt;
+    tt = get_if_content(test);
+    printf("%s", tt);
+    free(tt);*/
     return 0;
     /*char usr_cmd[250];
     int exit_sh, a;

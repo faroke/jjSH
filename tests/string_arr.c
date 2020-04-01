@@ -1,14 +1,18 @@
 #include "string_arr.h"
 
 
-int WHITESPACE (char c) {
-    if (c == '\t' || c == '\n' || c == ' ')
+int
+WHITESPACE (char c)
+{
+    if (c == '\t' || c == ' ')
         return 1;
     else
         return 0;
 }
 
-int	word_size(char *str) {
+int
+word_size(char *str)
+{
     int i;
 
     i = 0;
@@ -19,7 +23,9 @@ int	word_size(char *str) {
     return (i);
 }
 
-int	word_count(char *str) {
+int
+word_count(char *str)
+{
     int words;
     int i;
 
@@ -37,7 +43,9 @@ int	word_count(char *str) {
     return (words);
 }
 
-char **split_whitespaces(char *str) {
+char
+**split_whitespaces(char *str)
+{
     int	wcount;
     int	words_entered;
     int	i;
