@@ -1,7 +1,7 @@
 #ifndef SHELL_INTERPRETER_VAR_H
 #define SHELL_INTERPRETER_VAR_H
 
-#include "string_arr.h"
+#include <unistd.h>
 #include <string.h>
 #include <stddef.h>
 struct var {

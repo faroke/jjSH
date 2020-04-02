@@ -15,7 +15,7 @@ main(void)
     v.size = 0;
     find_var(s,&v);
    // printf("%s = %s type = %d\n", v.name[1], v.content[1], v.type[1]);
-    s = "if [[ -n $a ]]; \nthen\necho $a $b\necho bip\nfi\n";
+    s = "if [[ $a = $b ]]; \nthen\n$a=f\necho $a\necho $b\nfi\n";
     //execlp("ls","ls","-l",(char*) NULL);
     parse_if(s,&v);
     /*char *test = "if [[;lkd;flk]]; then \n echo $a\n echo $b\n fi $b='helllllllloooooo'";
